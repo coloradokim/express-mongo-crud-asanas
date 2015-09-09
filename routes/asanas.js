@@ -4,7 +4,9 @@ var db = require('monk')('localhost/postures');
 var asanaCollection = db.get('postures')
 
 router.get('/asanas', function(req, res, next) {
-  res.render('asanas/index');
+  asanaCollection.find({}, function (err, records) {
+    res.render('asanas/index', {allAsanas: records});
+  });
 });
 
 router.get('/asanas/new', function(req, res, next) {
