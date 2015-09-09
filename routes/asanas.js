@@ -11,7 +11,7 @@ router.get('/asanas/new', function(req, res, next) {
   res.render('asanas/new');
 });
 
-router.post('asanas', function (req, res, next) {
+router.post('/asanas', function (req, res, next) {
   asanaCollection.insert({englishName: req.body.englishName, sanskritName: req.body.sanskritName, url: req.body.url, backBend: req.body.backBend, forwardBend: req.body.forwardBend});
   res.redirect('/asanas')
 });
