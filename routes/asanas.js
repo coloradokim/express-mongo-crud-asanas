@@ -24,4 +24,18 @@ router.get('/asanas/:id', function (req, res, next) {
   });
 });
 
+router.get('/asanas/:id/edit', function (req, res, next) {
+  asanaCollection.findOne({_id: req.params.id}, function (err, record) {
+    res.render('asanas/edit', {thePosture: record});
+  });
+});
+
+router.post('/asanas/:id/update', function (req, res, next) {
+  asanaCollection.updateById(req.params.id, {englishName: req.body.englishName, sanskritName: req.body.sanskritName, url: req.body.url, backBend: req.body.backBend, forwardBend: req.body.forwardBend},
+  function(err, record) {
+    if (err) throw "Nope. Try again."
+  });
+  res.redirect('/asanas')
+});
+
 module.exports = router;

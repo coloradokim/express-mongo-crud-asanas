@@ -1,0 +1,19 @@
+<h1>Edit Asana</h1>
+  {{#thePosture}}
+<form action="/asanas/{{_id}}/update" method="post">
+  <label for="englishName">English Name</label>
+  <input type="text" name="englishName" value="{{englishName}}">
+
+  <label for="sanskritName">Sanskrit Name</label>
+  <input type="text" name="sanskritName" value="{{sanskritName}}">
+
+  <label for="url">Picture URL</label>
+  <input type="text" name="url" value="{{url}}">
+
+  <label for="checkbox">Movement of Spine</label>
+  <input type="checkbox" name="backBend" value="true"> Backbend? <br>
+  <input type="checkbox" name="forwardBend" value="true"> Forward bend? <br>
+
+  <input class ="button" type="submit" value ="Submit">
+</form>
+  {{/thePosture}}
