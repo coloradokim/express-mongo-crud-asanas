@@ -1,13 +1,12 @@
     <h1>Asanas</h1>
-    <a href="asanas/new">New Asana</a>
     <main>
       {{#allAsanas}}
-        <h2>{{englishName}}</h2>
+      <a href="/asanas/{{_id}}">{{englishName}}</a>
         <h2>{{sanskritName}}</h2>
         <h3>{{backBend}}</h3>
         <h3>{{forwardBend}}</h3>
         <img src="{{url}}" alt="" />
       {{/allAsanas}}
-
-
     </main>
+
+    <a href="asanas/new">New Asana</a>

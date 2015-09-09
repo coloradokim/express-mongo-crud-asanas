@@ -18,4 +18,10 @@ router.post('/asanas', function (req, res, next) {
   res.redirect('/asanas')
 });
 
+router.get('/asanas/:id', function (req, res, next) {
+  asanaCollection.findOne({_id: req.params.id}, function (err, record) {
+    res.render('asanas/show.hbs', {thePosture: record});
+  });
+});
+
 module.exports = router;
