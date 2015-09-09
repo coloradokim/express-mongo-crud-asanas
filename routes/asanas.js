@@ -38,4 +38,13 @@ router.post('/asanas/:id/update', function (req, res, next) {
   res.redirect('/asanas')
 });
 
+
+router.post('/asanas/:id/delete', function (req, res, next) {
+  asanaCollection.remove({_id: req.params.id}, function (err, record) {
+    console.log(record);
+    if (err) throw "This item cannot be removed"
+  });
+  res.redirect('/asanas')
+});
+
 module.exports = router;
