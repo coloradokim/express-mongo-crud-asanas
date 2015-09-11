@@ -14,7 +14,13 @@ router.get('/asanas/new', function(req, res, next) {
 });
 
 router.post('/asanas', function (req, res, next) {
-  asanaCollection.insert({englishName: req.body.englishName, sanskritName: req.body.sanskritName, url: req.body.url, backBend: req.body.backBend, forwardBend: req.body.forwardBend});
+  asanaCollection.insert({englishName: req.body.englishName,
+  sanskritName: req.body.sanskritName,
+  url: req.body.url,
+  backBend: req.body.backBend,
+  forwardBend: req.body.forwardBend,
+  comments: []
+  });
   res.redirect('/asanas')
 });
 
@@ -38,13 +44,21 @@ router.post('/asanas/:id/update', function (req, res, next) {
   res.redirect('/asanas')
 });
 
-
 router.post('/asanas/:id/delete', function (req, res, next) {
   asanaCollection.remove({_id: req.params.id}, function (err, record) {
-    console.log(record);
     if (err) throw "This item cannot be removed"
   });
   res.redirect('/asanas')
 });
+
+//Routes for adding, viewing and deleting comments
+router.post('/asanas/:id/', function(req, res, next) {
+  asanaCollection.findAndModify({
+    query: {_id: req.params.id },
+    update: { $push: { comments: req.body.commentText } }
+  });
+  res.redirect('/asanas');
+});
+
 
 module.exports = router;

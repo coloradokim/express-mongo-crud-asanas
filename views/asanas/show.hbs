@@ -7,6 +7,16 @@
 
   <a href="/asanas/{{_id}}/edit">Edit Posture</a>
 
+  <aside>
+    <form action="/asanas/{{_id}}/" method="post">
+      <label for="commentText">Comment</label>
+      <textarea name="commentText" rows="8" cols="40"></textarea>
+      <label for="commentAuthor">Author</label>
+      <input type="text" name="commentAuthor">
+      <input type="submit" value="Add Comment!">
+    </form>
+  </aside>
+
   <form action="/asanas/{{_id}}/delete" method="post">
     <input type="submit" value="Delete Posture">
   </form>
