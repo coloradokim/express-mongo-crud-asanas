@@ -52,13 +52,27 @@ router.post('/asanas/:id/delete', function (req, res, next) {
 });
 
 //Routes for adding, viewing and deleting comments
+var counter = 0
 router.post('/asanas/:id/', function(req, res, next) {
-  asanaCollection.findAndModify({
-    query: {_id: req.params.id },
-    update: { $push: { comments: req.body.commentText } }
+  counter++;
+  req.body.id = counter
+  asanaCollection.findOne({_id: req.params.id }, function(err, record){
+    record.comments.push(req.body)
+    asanaCollection.update({_id: req.params.id }, record, function(err, record){
+      res.redirect('/asanas');
+    });
   });
-  res.redirect('/asanas');
 });
+
+router.get('/asanas/:id/comments', function (req, res, next) {
+  asanaCollection.findOne({_id: req.params.id}, function (err, record) {
+    res.render('asanas/comments', {thePosture: record});
+  });
+});
+
+// router.post('/asanas/id/comments/delete', function (req, res, next) {
+//
+// })
 
 
 module.exports = router;

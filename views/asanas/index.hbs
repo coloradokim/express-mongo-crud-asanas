@@ -1,13 +1,20 @@
   <h1>Asanas</h1>
   <main>
-  {{#allAsanas}}
+  {{#each allAsanas}}
     <a href="/asanas/{{_id}}">{{englishName}}</a>
       <h2>{{sanskritName}}</h2>
       <h3>{{backBend}}</h3>
       <h3>{{forwardBend}}</h3>
       <img src="{{url}}" alt="" />
-  {{/allAsanas}}
   </main>
+  <aside class="">
+    <h3>Comments</h3>
+    {{#each comments}}
+    <h4>{{commentText}} by {{commentAuthor}}</h4>
+    {{/each}}
+    <a href="asanas/{{_id}}/comments">Edit Comment</a>
+  </aside>
+  {{/each}}
 
 
     <a href="asanas/new">New Asana</a>
